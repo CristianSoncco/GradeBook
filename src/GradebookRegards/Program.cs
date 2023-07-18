@@ -6,17 +6,14 @@
         {
             var book = new Book("Scott's Grade book");
 
-            var done = false;
-
-            while(!done)
+            while(true)
             {
                 Console.WriteLine("Enter a grade or 'q' to quit");
                 var input = Console.ReadLine();
 
                 if(input == "q")
                 {
-                    done = true;
-                    continue;
+                    break;
                 }
 
                 var grade = double.Parse(input);
