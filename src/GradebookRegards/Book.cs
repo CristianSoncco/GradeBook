@@ -92,5 +92,6 @@ namespace GradebookRegards
             private set;
         }
 
+        public const string CATEGORY = "Science";
     }
 }
