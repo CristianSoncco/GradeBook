@@ -5,6 +5,10 @@
         static void Main(string[] args)
         {
             var book = new Book("Scott's Grade book");
+            book.GradeAdded += OnGradeAdded;
+            book.GradeAdded += OnGradeAdded;
+            book.GradeAdded -= OnGradeAdded;
+            book.GradeAdded += OnGradeAdded;
 
             while(true)
             {
@@ -20,7 +24,7 @@
                 {
                     var grade = double.Parse(input);
                     book.AddGrade(grade);
-                    book.AddGrade('A');
+                    //book.AddGrade('A');
                 }
                 catch(ArgumentException ex)
                 {
@@ -48,6 +52,10 @@
             Console.WriteLine($"The average grade is {stats.Average:N0}");
             Console.WriteLine($"The letter grade is {stats.Letter}");
             
+            static void OnGradeAdded(object sender, EventArgs e)
+            {
+                Console.WriteLine("A grade was added");
+            }
         }
     }
 }
