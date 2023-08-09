@@ -2,6 +2,10 @@ namespace GradebookRegards
 {
     public class NameOfObject
     {
+        public NameOfObject(string name)
+        {
+            Name=name;
+        }
         public string Name
         {
             get;
@@ -12,10 +16,10 @@ namespace GradebookRegards
     public class Book : NameOfObject
     {
         public delegate void GradeAddedDelegate(object sender, EventArgs args);
-        public Book(string name)
+        public Book(string name) : base(name)
         {
             grades= new List<double>();
-            this.Name   =   name;
+            Name   =   name;
         }
 
         public void AddGrade(char letter)
