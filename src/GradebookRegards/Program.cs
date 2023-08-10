@@ -1,15 +1,36 @@
-﻿namespace GradebookRegards
+﻿using GradebookRegards;
+using System;
+using System.Collections.Generic;
+
+namespace GradebookRegards
 {
     class Program
     {
         static void Main(string[] args)
         {
-            var book = new Book("Scott's Grade book");
-            book.GradeAdded += OnGradeAdded;
-            book.GradeAdded += OnGradeAdded;
-            book.GradeAdded -= OnGradeAdded;
+            IBook book = new DiskBook("Scott's Grade book");
             book.GradeAdded += OnGradeAdded;
 
+ 
+            //..
+            EnterGrades(book);
+            
+            var stats= book.GetStatistics();
+
+            // Console.WriteLine($"For the book Category {InMemoryBook.CATEGORY}");
+            Console.WriteLine($"For the book named {book.Name}");
+            Console.WriteLine($"The lowest grade is {stats.Low}");
+            Console.WriteLine($"The highest grade is {stats.High}");
+            Console.WriteLine($"The average grade is {stats.Average:N0}");
+            Console.WriteLine($"The letter grade is {stats.Letter}");
+            
+            static void OnGradeAdded(object sender, EventArgs e)
+            {
+                Console.WriteLine("A grade was added");
+            }
+        }
+
+        private static void EnterGrades(IBook book){
             while(true)
             {
                 Console.WriteLine("Enter a grade or 'q' to quit");
@@ -39,23 +60,7 @@
                     Console.WriteLine("**");
                 }
 
-            }   
-            //..
-
-            
-            var stats= book.GetStatistics();
-
-            Console.WriteLine($"For the book Category {Book.CATEGORY}");
-            Console.WriteLine($"For the book named {book.Name}");
-            Console.WriteLine($"The lowest grade is {stats.Low}");
-            Console.WriteLine($"The highest grade is {stats.High}");
-            Console.WriteLine($"The average grade is {stats.Average:N0}");
-            Console.WriteLine($"The letter grade is {stats.Letter}");
-            
-            static void OnGradeAdded(object sender, EventArgs e)
-            {
-                Console.WriteLine("A grade was added");
-            }
+            }  
         }
     }
 }
