@@ -8,13 +8,9 @@ namespace GradebookRegards
     {
         static void Main(string[] args)
         {
-            IBook book = new DiskBook("Scott's Grade book");
-            book.GradeAdded += OnGradeAdded;
-
- 
-            //..
-            EnterGrades(book);
-            
+            Book? book = new InMemoryBook("");
+            book.AddGrade(90.5);
+            EnterGrades(null);
             var stats= book.GetStatistics();
 
             // Console.WriteLine($"For the book Category {InMemoryBook.CATEGORY}");
@@ -23,14 +19,34 @@ namespace GradebookRegards
             Console.WriteLine($"The highest grade is {stats.High}");
             Console.WriteLine($"The average grade is {stats.Average:N0}");
             Console.WriteLine($"The letter grade is {stats.Letter}");
+
+
+
+
+
+
+
+            // IBook book = new DiskBook("Scott's Grade book");
+            // book.GradeAdded += OnGradeAdded;
+            // EnterGrades(book);
             
-            static void OnGradeAdded(object sender, EventArgs e)
-            {
-                Console.WriteLine("A grade was added");
-            }
+            // var stats= book.GetStatistics();
+
+            // // Console.WriteLine($"For the book Category {InMemoryBook.CATEGORY}");
+            // Console.WriteLine($"For the book named {book.Name}");
+            // Console.WriteLine($"The lowest grade is {stats.Low}");
+            // Console.WriteLine($"The highest grade is {stats.High}");
+            // Console.WriteLine($"The average grade is {stats.Average:N0}");
+            // Console.WriteLine($"The letter grade is {stats.Letter}");
+            
+            // static void OnGradeAdded(object sender, EventArgs e)
+            // {
+            //     Console.WriteLine("A grade was added");
+            // }
         }
 
-        private static void EnterGrades(IBook book){
+        private static void EnterGrades(IBook? book)
+        {
             while(true)
             {
                 Console.WriteLine("Enter a grade or 'q' to quit");
